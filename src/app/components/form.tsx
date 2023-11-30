@@ -66,7 +66,7 @@ export function Form() {
         </button>
       </form>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
+      <div className="grid items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4">
         {data.map((song: SongType) => (
           <Song artist={song.artist} title={song.title} image={song.image} />
         ))}

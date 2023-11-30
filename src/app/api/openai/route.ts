@@ -24,7 +24,7 @@ export async function POST(request: Request) {
 }
 
 async function getResponse(prompt: string) {
-  const length = 5;
+  const length = 9;
   return openai.chat.completions.create({
     messages: [
       {

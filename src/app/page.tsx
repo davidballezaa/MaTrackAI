@@ -10,7 +10,7 @@ export default function Home() {
       <p className="text-gray-500 mb-12 text-base animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
         Insert how you feel
       </p>
-      <div className="max-w-md space-y-4 w-full animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
+      <div className="max-w-lg space-y-4 w-full animate-in fade-in slide-in-from-bottom-4 duration-1200 ease-in-out">
         <Form />
       </div>
     </main>

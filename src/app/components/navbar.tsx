@@ -25,12 +25,10 @@ const Navbar: React.FC = ({}) => {
       <div className="text-xl font-bold">Moody</div>
       <div className="flex items-center">
         {userPhotoUrl ? (
-          <Image
+          <img
             src={userPhotoUrl}
             alt="User Profile"
-            className="w-8 h-8 rounded-full cursor-pointer"
-            width={32}
-            height={32}
+            className="w-8 h-8 object-fill rounded-full cursor-pointer"
           />
         ) : (
           <User size={32} className="cursor-pointer" />

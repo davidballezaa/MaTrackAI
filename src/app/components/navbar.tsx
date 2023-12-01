@@ -1,10 +1,12 @@
 "use client";
-import { User } from "lucide-react";
+import { LogIn } from "lucide-react";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 const Navbar: React.FC = ({}) => {
   const [userPhotoUrl, setUserPhotoUrl] = useState("");
+
+  const session = useSession();
 
   useEffect(() => {
     const fetchUserPhotoUrl = async () => {
@@ -16,9 +18,10 @@ const Navbar: React.FC = ({}) => {
         console.error("Error fetching user photo URL:", error);
       }
     };
-
-    fetchUserPhotoUrl();
-  }, []);
+    if (session.status == "authenticated") {
+      fetchUserPhotoUrl();
+    }
+  }, [session]);
 
   return (
     <div className="flex items-center justify-between p-4 bg-gray-200">
@@ -29,9 +32,14 @@ const Navbar: React.FC = ({}) => {
             src={userPhotoUrl}
             alt="User Profile"
             className="w-8 h-8 object-fill rounded-full cursor-pointer"
+            onClick={() => signOut()}
           />
         ) : (
-          <User size={32} className="cursor-pointer" />
+          <LogIn
+            size={24}
+            className="cursor-pointer"
+            onClick={() => signIn("spotify")}
+          />
         )}
       </div>
     </div>

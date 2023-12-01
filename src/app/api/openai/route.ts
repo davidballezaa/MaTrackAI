@@ -1,5 +1,6 @@
 import OpenAI from "openai";
-
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "../auth/[...nextauth]/route";
 import { getSongs } from "../../../../lib/spotify";
 
 const openai = new OpenAI({
@@ -12,11 +13,14 @@ type Song = {
 };
 
 export async function POST(request: Request) {
+  const {
+    token: { accessToken },
+  } = await getServerSession(authOptions);
   const { prompt } = await request.json();
   const response = await getResponse(prompt);
   const songs = JSON.parse(response.choices[0].message.content || "");
 
-  const spotifySongs = await getSongs(Array.from(songs.songs));
+  const spotifySongs = await getSongs(accessToken, Array.from(songs.songs));
 
   return Response.json({
     spotifySongs,
